@@ -1,0 +1,28 @@
+{
+    "name": "mattsolar123/perse",
+    "autoload": {
+        "psr-4": {
+            "Mattsolar123\\Perse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matthew Jameson",
+            "email": "matthew.jameson@projectbetterenergy.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^11.0|^12.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mattsolar123\\Perse\\PerseServiceProvider"
+            ],
+            "aliases": {
+                "Perse": "Mattsolar123\\Perse\\Facades\\Perse"
+            }
+        }
+    }
+}
