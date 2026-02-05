@@ -6,15 +6,7 @@ use Mattsolar123\Perse\Data\MeterDetails;
 
 interface MeterServiceInterface
 {
-    public function basicElectricityByAddressId(
-        string $addressId,
-    ): MeterDetails;
-
-    public function basicGasByAddressId(
-        string $addressId,
-    ): MeterDetails;
-
-    public function fullMeterByMpan(
+    public function meterDetails(
         string $mpan,
     ): MeterDetails;
 }

@@ -13,54 +13,6 @@ use Mattsolar123\Perse\Data\MeterDetails;
 
 class MeterServiceTest extends TestCase
 {
-    public function test_basic_electricity_by_address_id_returns_response_body(): void
-    {
-        $mockBody = file_get_contents(__DIR__ . '/../Fixtures/basic-meter-response.json');
-        $mock = new MockHandler([
-            new Response(200, [], $mockBody),
-        ]);
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
-        $this->app->instance(MeterServiceInterface::class, new MeterService($client));
-
-        $result = $this->app->make(MeterServiceInterface::class)->basicElectricityByAddressId(
-            '1uc0_dsd45ygfml4M4XAiqOgrz1nPL_A',
-        );
-
-        $bodyDecoded = json_decode($mockBody, true);
-
-        $this->assertInstanceOf(MeterDetails::class, $result);
-        $this->assertSame(
-            $bodyDecoded['data'][0]['mpanCore'],
-            $result->mpanCore
-        );
-    }
-
-    public function test_basic_gas_by_address_id_returns_response_body(): void
-    {
-        $mockBody = file_get_contents(__DIR__ . '/../Fixtures/basic-meter-response.json');
-        $mock = new MockHandler([
-            new Response(200, [], $mockBody),
-        ]);
-        $handlerStack = HandlerStack::create($mock);
-        $client = new Client(['handler' => $handlerStack]);
-
-        $this->app->instance(MeterServiceInterface::class, new MeterService($client));
-
-        $result = $this->app->make(MeterServiceInterface::class)->basicGasByAddressId(
-            '1uc0_dsd45ygfml4M4XAiqOgrz1nPL_A'
-        );
-
-        $bodyDecoded = json_decode($mockBody, true);
-
-        $this->assertInstanceOf(MeterDetails::class, $result);
-        $this->assertSame(
-            $bodyDecoded['data'][0]['mpanCore'],
-            $result->mpanCore
-        );
-    }
-
     public function test_full_meter_by_mpan_returns_response_body(): void
     {
         $mockBody = file_get_contents(__DIR__ . '/../Fixtures/full-meter-by-mpan-response.json');
@@ -72,7 +24,7 @@ class MeterServiceTest extends TestCase
 
         $this->app->instance(MeterServiceInterface::class, new MeterService($client));
 
-        $result = $this->app->make(MeterServiceInterface::class)->fullMeterByMpan(
+        $result = $this->app->make(MeterServiceInterface::class)->meterDetails(
             '1012394107989',
         );
 

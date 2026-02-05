@@ -6,7 +6,7 @@ use Mattsolar123\Perse\Data\AddressDetails;
 
 interface AddressServiceInterface
 {
-    public function list(): array;
+    public function list(string $postCode): array;
 
     public function addressById(string $addressId): AddressDetails;
 }

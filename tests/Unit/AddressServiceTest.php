@@ -26,7 +26,7 @@ class AddressServiceTest extends TestCase
 
         $this->app->instance(AddressServiceInterface::class, new AddressService($client));
 
-        $result = $this->app->make(AddressServiceInterface::class)->list();
+        $result = $this->app->make(AddressServiceInterface::class)->list('XX1 1XX');
 
         $this->assertSame(json_decode($mockBody, true), $result);
     }

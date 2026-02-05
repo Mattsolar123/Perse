@@ -12,19 +12,28 @@ abstract class AbstractPerseService
 
     protected function postJson(string $path, array $body): string
     {
-        $response = $this->client->post($path, ['json' => $body]);
+        $response = $this->client->post($path, [
+            'json' => $body
+        ]);
+
         return (string) $response->getBody();
     }
 
     protected function postJsonAsArray(string $path, array $body): array
     {
-        $response = $this->client->post($path, ['json' => $body]);
+        $response = $this->client->post($path, [
+            'json' => $body
+        ]);
+
         return json_decode((string) $response->getBody(), true);
     }
 
-    protected function getAsArray(string $path, array $query): array
+    protected function getAsArray(string $path, array $body): array
     {
-        $response = $this->client->get($path, ['query' => $query]);
+        $response = $this->client->get($path, [
+            'json' => $body
+        ]);
+
         return json_decode((string) $response->getBody(), true);
     }
 }

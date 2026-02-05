@@ -10,14 +10,18 @@ use Mattsolar123\Perse\Data\AddressDetails;
 
 class AddressService extends AbstractPerseService implements AddressServiceInterface
 {
-    public function list(): array
+    public function list(string $postCode): array
     {
-        return $this->getAsArray( Endpoints::ADDRESS_LIST, []);
+        return $this->getAsArray( Endpoints::ADDRESS_LIST, [
+            'postCode' => $postCode
+        ]);
     }
 
     public function addressById(string $addressId): AddressDetails
     {
-        $response = $this->getAsArray( Endpoints::ADDRESS_BY_ID, ['addressId' => $addressId]);
+        $response = $this->getAsArray( Endpoints::ADDRESS_BY_ID, [
+            'addressId' => $addressId
+        ]);
         
         return new AddressDetails(
             address: $response['data']['address'],
