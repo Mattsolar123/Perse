@@ -3,11 +3,12 @@
 namespace Mattsolar123\Perse\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Mattsolar123\Perse\Contracts\MeterServiceInterface;
 
 /**
- * @see \Mattsolar123\Perse\Services\ApiService
+ * @see \Mattsolar123\Perse\Services\MeterService
  */
-class Perse extends Facade
+class PerseMeterDetails extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +17,6 @@ class Perse extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return \Mattsolar123\Perse\Services\ApiService::class;
+        return MeterServiceInterface::class;
     }
 }

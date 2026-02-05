@@ -5,6 +5,15 @@
             "Mattsolar123\\Perse\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Mattsolar123\\Perse\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "phpunit/phpunit": "^10.0|^11.0"
+    },
     "authors": [
         {
             "name": "Matthew Jameson",
@@ -21,7 +30,7 @@
                 "Mattsolar123\\Perse\\PerseServiceProvider"
             ],
             "aliases": {
-                "Perse": "Mattsolar123\\Perse\\Facades\\Perse"
+                "PerseMeterDetails": "Mattsolar123\\Perse\\Facades\\PerseMeterDetails"
             }
         }
     }

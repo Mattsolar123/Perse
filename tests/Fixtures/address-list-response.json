@@ -1,0 +1,22 @@
+{
+    "status": "Success",
+    "code": 200,
+    "data": [
+        {
+            "addressId": "1uc0_dsd45ygfml4M4XAiqOgrz1nPL_A",
+            "text": "112, OBFUSCATED CRES, GEDLING, NG4 4NW"
+        },
+        {
+            "addressId": "1pgW2o1p-wfVS6vpSakcXCKCM2Iu-yGjJg45",
+            "text": "114, OBFUSCATED CRES, GEDLING, NG4 4NW"
+        },
+        {
+            "addressId": "1qwFdrNp-wfVrS3QLk7htoYnJyyYkwPEzA",
+            "text": "46, OBFUSCATED CRES, GEDLING, NG4 4NW"
+        },
+        {
+            "addressId": "1owM2vZp-wfVICTitEGtIm_eAvubEff0hQ",
+            "text": "50, OBFUSCATED CRES, GEDLING, NG4 4NW"
+        }
+    ]
+}

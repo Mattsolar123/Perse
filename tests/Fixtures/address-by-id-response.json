@@ -1,0 +1,13 @@
+{
+  "status": "Success",
+  "code": 200,
+  "data": {
+    "addressId": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "address": "1, EXAMPLE STREET, SAMPLE, TOWN, XX1 1XX",
+    "mprn": ["00000000"],
+    "mpan": ["0000000000000"],
+    "fuelType": "electricitygas",
+    "postCode": "XX1 1XX",
+    "uprn": "000000000000"
+  }
+}
