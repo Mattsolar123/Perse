@@ -1,0 +1,20 @@
+{
+    "code": 200,
+    "status": "Success",
+    "data": {
+      "siteId": "cde00084-e138-4556-86a6-07674e",
+      "utmSource": "PROJECTSOLAR",
+      "appointmentDate": "2026-01-15",
+      "appointmentTimeFrom": "10:00",
+      "appointmentTimeTo": "12:00",
+      "customerGuid": "bfca9728-a9e8de33bad",
+      "appointmentId": 622105,
+      "appointmentStatus": "unissued",
+      "repId": "NULL",
+      "repEmailId": "NULL",
+      "repFirstName": "NULL",
+      "repLastName": "NULL",
+      "isAppointmentReq": true,
+      "updates": "appointmentDate"
+    }
+  }

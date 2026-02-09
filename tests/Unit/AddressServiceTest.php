@@ -8,7 +8,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Mattsolar123\Perse\Services\AddressService;
 use Mattsolar123\Perse\Tests\TestCase;
-use Mattsolar123\Perse\Contracts\AddressServiceInterface;
 use Mattsolar123\Perse\Data\AddressDetails;
 
 class AddressServiceTest extends TestCase
@@ -24,9 +23,9 @@ class AddressServiceTest extends TestCase
 
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->app->instance(AddressServiceInterface::class, new AddressService($client));
+        $addressService = new AddressService($client);
 
-        $result = $this->app->make(AddressServiceInterface::class)->list('XX1 1XX');
+        $result = $addressService->list('XX1 1XX');
 
         $this->assertSame(json_decode($mockBody, true), $result);
     }
@@ -40,9 +39,9 @@ class AddressServiceTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->app->instance(AddressServiceInterface::class, new AddressService($client));
+        $addressService = new AddressService($client);
 
-        $result = $this->app->make(AddressServiceInterface::class)->addressById(
+        $result = $addressService->addressById(
             'Aua6auZouvLZuSzVnKvOsPWk3NezYMqq1w',
         );
 

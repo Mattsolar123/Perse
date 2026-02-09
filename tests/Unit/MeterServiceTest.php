@@ -8,7 +8,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Mattsolar123\Perse\Services\MeterService;
 use Mattsolar123\Perse\Tests\TestCase;
-use Mattsolar123\Perse\Contracts\MeterServiceInterface;
 use Mattsolar123\Perse\Data\MeterDetails;
 
 class MeterServiceTest extends TestCase
@@ -22,9 +21,9 @@ class MeterServiceTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
-        $this->app->instance(MeterServiceInterface::class, new MeterService($client));
+        $meterService = new MeterService($client);
 
-        $result = $this->app->make(MeterServiceInterface::class)->meterDetails(
+        $result = $meterService->meterDetails(
             '1012394107989',
         );
 

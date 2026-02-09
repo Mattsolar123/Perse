@@ -7,33 +7,51 @@ use GuzzleHttp\ClientInterface;
 abstract class AbstractPerseService
 {
     public function __construct(
-        protected ClientInterface $client
+        protected ClientInterface $client,
     ) {}
-
-    protected function postJson(string $path, array $body): string
-    {
-        $response = $this->client->post($path, [
-            'json' => $body
-        ]);
-
-        return (string) $response->getBody();
-    }
 
     protected function postJsonAsArray(string $path, array $body): array
     {
-        $response = $this->client->post($path, [
-            'json' => $body
-        ]);
+        $response = $this->client->post(
+            $path,
+            [
+                'json' => $body
+            ]
+        );
 
-        return json_decode((string) $response->getBody(), true);
+        $responseBody = $response->getBody()->getContents();
+        $responseBodyDecoded = json_decode($responseBody, true);
+
+        return $responseBodyDecoded;
     }
 
     protected function getAsArray(string $path, array $body): array
     {
-        $response = $this->client->get($path, [
-            'json' => $body
-        ]);
+        $response = $this->client->get(
+            $path,
+            [
+                'json' => $body
+            ]
+        );
 
-        return json_decode((string) $response->getBody(), true);
+        $responseBody = $response->getBody()->getContents();
+        $responseBodyDecoded = json_decode($responseBody, true);
+
+        return $responseBodyDecoded;
+    }
+
+    protected function postAsArray(string $path, array $body): array
+    {
+        $response = $this->client->post(
+            $path,
+            [
+                'json' => $body
+            ]
+        );
+
+        $responseBody = $response->getBody()->getContents();
+        $responseBodyDecoded = json_decode($responseBody, true);
+
+        return $responseBodyDecoded;
     }
 }
