@@ -6,38 +6,47 @@ use Mattsolar123\Perse\Services\AbstractPerseService;
 use Mattsolar123\Perse\Contracts\AppointmentServiceInterface;
 use Mattsolar123\Perse\Http\Endpoints;
 use Mattsolar123\Perse\Data\AppointmentDetails;
+use Mattsolar123\Perse\Data\AppointmentResponse;
 use Mattsolar123\Perse\Libraries\CryptoJsAes;
+use GuzzleHttp\Exception\RequestException;
 
 class AppointmentService extends AbstractPerseService implements AppointmentServiceInterface
 {
     public function update(
         AppointmentDetails $appointmentDetails,
-    ): AppointmentDetails
+    ): AppointmentResponse
     {
-        $response = $this->postJsonAsArray(
-            Endpoints::UPDATE_APPOINTMENT,
-            $appointmentDetails->toArray()
-        );
+        try {
+            $response = $this->postJsonAsArray(
+                Endpoints::UPDATE_APPOINTMENT . '?utmSource=' . getenv('PERSE_UTM_SOURCE'),
+                $appointmentDetails->toArray()
+            );
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            $statusCode = $response?->getStatusCode() ?? 500;
+            $body = $response !== null
+                ? $response->getBody()->getContents()
+                : $e->getMessage();
+            return new AppointmentResponse(
+                httpStatusCode: $statusCode,
+                data: $body ?: 'Internal Server Error',
+                loginUrl: null
+            );
+        }
 
-        return new AppointmentDetails(
-            appointmentDate: $response['data']['appointmentDate'],
-            appointmentTimeFrom: $response['data']['appointmentTimeFrom'],
-            appointmentTimeTo: $response['data']['appointmentTimeTo'],
-            siteId: $response['data']['siteId'],
-            customerGuid: $response['data']['customerGuid'],
-            appointmentId: $response['data']['appointmentId'],
-            appointmentStatus: $response['data']['appointmentStatus'],
-            repId: $response['data']['repId'] ?? null,
-            repEmailId: $response['data']['repEmailId'] ?? null,
-            repFirstName: $response['data']['repFirstName'] ?? null,
-            repLastName: $response['data']['repLastName'] ?? null,
-            loginUrl: $this->getLoginUrl($response),
+        $bodyContents = $response->getBody()->getContents();
+        $data = json_decode($bodyContents, true)['data'] ?? [];
+
+        return new AppointmentResponse(
+            httpStatusCode: $response->getStatusCode(),
+            data: json_encode($data),
+            loginUrl: $this->getLoginUrl($data)
         );
     }
 
     public function getLoginUrl(array $response): string|null
     {
-        return isset($response['data']) && isset($response['data']['repLoginUrl']) ?
-            CryptoJsAes::decrypt($response['data']['repLoginUrl'], getenv('PERSE_SECRET')) : null;
+        return isset($response) && isset($response['repLoginUrl']) ?
+            CryptoJsAes::decrypt($response['repLoginUrl'], getenv('PERSE_SECRET')) : null;
     }
 }

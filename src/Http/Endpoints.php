@@ -12,5 +12,5 @@ class Endpoints
     public const METER_DETAILS_ADVANCED_PLUS = 'meter/v3/meter-details-advanced-plus';
     public const FULL_METER_BY_MPAN_ADVANCED_PLUS = 'meter/v3/meter-details-advanced-plus';
 
-    public const UPDATE_APPOINTMENT = 'carbon/v3/appointment';
+    public const UPDATE_APPOINTMENT = 'carbon/v4/appointment';
 }

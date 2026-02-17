@@ -10,7 +10,7 @@ class AppointmentDetails
         public string $appointmentTimeTo,
         public string $siteId,
         public string $customerGuid,
-        public string $appointmentId,
+        public string|int $appointmentId,
         public string $appointmentStatus,
         public string|null $repId,
         public string|null $repEmailId,

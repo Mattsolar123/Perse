@@ -27,7 +27,7 @@ class AppointmentServiceTest extends TestCase
 
         $result = $appointmentService->update(
             new AppointmentDetails(
-                appointmentDate: '1012394107989',
+                appointmentDate: '2026-01-15',
                 appointmentTimeFrom: '2026-01-01',
                 appointmentTimeTo: '10:00',
                 siteId: 1,
@@ -42,20 +42,21 @@ class AppointmentServiceTest extends TestCase
         );
 
         $bodyDecoded = json_decode($mockBody, true);
+        $resultDecoded = json_decode($result->data, true);
 
         $this->assertSame(
             $bodyDecoded['data']['appointmentDate'],
-            $result->appointmentDate
+            $resultDecoded['appointmentDate']
         );
 
         $this->assertSame(
             $bodyDecoded['data']['siteId'],
-            $result->siteId
+            $resultDecoded['siteId']
         );
 
         $this->assertSame(
             $bodyDecoded['data']['appointmentTimeTo'],
-            $result->appointmentTimeTo
+            $resultDecoded['appointmentTimeTo']
         );
     }
 }
