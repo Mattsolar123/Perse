@@ -31,7 +31,7 @@ $data = new AppointmentDetails(
     siteId: 'SITE_123',
     customerGuid: 'cust_987654',
     appointmentId: '101',
-    appointmentStatus: 'scheduled'
+    appointmentStatus: 'issued'
 );
 
 Appointment::update(
@@ -49,10 +49,13 @@ Appointment::update(
 | `siteId` | `string` | `SITE_123` | Yes | The unique identifier for the site. |
 | `customerGuid` | `string` | UUID / String | Yes | Unique Global ID for the customer. |
 | `appointmentId` | `string` | `"105"` | Yes | Internal ID (must be cast to string). |
-| `appointmentStatus` | `string` | `booked` | Yes | Current state of the appointment. |
+| `appointmentStatus` | `string` | `unissued`, `issued`, `cancelled` | Yes | Current state of the appointment. |
 | `repId` | `string\|null` | `"99"` | No | ID of the assigned representative. |
-| `repEmailId` | `string\|null` | `rep@company.com` | No | Email for the representative. |
-| `repFirstName` | `string\|null` | `John` | No | Representative's first name. |
-| `repLastName` | `string\|null` | `Doe` | No | Representative's last name. |
+| `repEmailId` | `string\|null` | `rep@company.com` | Only for issued appointments | Email for the representative. |
+| `repFirstName` | `string\|null` | `John` | Only for issued appointments | Representative's first name. |
+| `repLastName` | `string\|null` | `Doe` | Only for issued appointments | Representative's last name. |
 
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
